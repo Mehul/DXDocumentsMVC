@@ -13,8 +13,7 @@ namespace DXDocsMVC.Models
 		  [RegularExpression("\\w+", ErrorMessage = "Invalid user name")]
 		  public string AccountName { get; set; }
 		  public string UserPassword { get; set; }
-		  public bool Validated { get; set; }
-		  public string ErrorText { get; set; }
+	     public string ErrorText { get; set; }
 
 	 }
 }

@@ -16,8 +16,7 @@ namespace DXDocsMVC.Controllers
 				var model = new LogOnModel
 				{
 					 AccountName = UserService.DefaultUserAccountName,
-					 UserPassword = null,
-					 Validated = false,
+					 UserPassword = null,					 
 					 ErrorText = String.Empty
 				};
             return View(model);
@@ -34,8 +33,7 @@ namespace DXDocsMVC.Controllers
 					 model = new LogOnModel
 					 {
 						  AccountName = postedModel.AccountName,
-						  UserPassword = null,
-						  Validated = false,
+						  UserPassword = null,						  
 						  ErrorText = String.Format("Login failed for '{0}'. Make sure your account name is correct and retype the password in the correct case.", postedModel.AccountName)
 					 };					 
 				}
@@ -44,8 +42,7 @@ namespace DXDocsMVC.Controllers
 					 model = new LogOnModel
 					 {
 						  AccountName = postedModel.AccountName,
-						  UserPassword = null,
-						  Validated = true,
+						  UserPassword = null,						  
 						  ErrorText = String.Empty
 					 };					 
 				}
