@@ -1,0 +1,122 @@
+﻿@model DXDocsMVC.Models.LogOnModel
+
+@{ 
+    string logonCss = "LogonContainer";
+    if(!String.IsNullOrEmpty(Model.ErrorText)) {
+		  logonCss += " LogonError";
+	 }
+}
+<div class="@logonCss">
+   @using (Html.BeginForm()){
+        <div class="LogonContent">
+            @Html.DevExpress().Image(settings => {
+					 settings.Name= "LogoImage";
+					 settings.ImageUrl = Url.Content("~/Content/Images/Icons/DXLogo_login.png");
+					 settings.ClientVisible = true;
+                //ShowLoadingImage="true"
+				}).GetHtml()
+
+            @Html.DevExpress().FormLayout(frm => {
+					 frm.Name = "FormLayout";
+					 frm.RequiredMarkDisplayMode = RequiredMarkMode.None;
+					 frm.ShowItemCaptionColon = false;
+					 frm.ControlStyle.CssClass="LogonFormLayout";
+			  
+					 frm.Styles.LayoutItem.Caption.CssClass="LogonCaption";
+					 frm.Styles.LayoutGroupBox.CssClass="LogonGroupBox";
+           		 frm.Styles.LayoutGroupBox.Caption.CssClass="LogonLogoCaption";
+
+					 var group = frm.Items.AddGroupItem(n=>{
+                    n.GroupBoxDecoration = GroupBoxDecoration.HeadingLine;
+                    n.ShowCaption = DefaultBoolean.False;
+                });
+                group.Items.Add(n =>
+                {
+                    n.Caption="Access Your Documents - Anywhere";
+                    n.Name="Title";
+                    n.SetNestedContent("&nbsp;");
+                });
+					 group.Items.AddEmptyItem().CssClass="LogonEmptyItem";
+           
+					 group.Items.Add(m => m.AccountName, n => {
+						 n.ShowCaption=DefaultBoolean.False;
+						 n.CssClass="LogonAccountNameItem";
+						 n.NestedExtension().TextBox(cfg => {
+						    cfg.Name = "AccountName";
+                      cfg.Width = Unit.Percentage(100);
+                      cfg.ControlStyle.CssClass = "AccountNameTextBox";
+
+                      cfg.Properties.FocusedStyle.CssClass = "AccountNameFocused";
+                      cfg.ControlStyle.BackgroundImage.ImageUrl = "/Content/Images/Logon/Login.png";
+                      cfg.ControlStyle.BackgroundImage.Repeat = BackgroundImageRepeat.NoRepeat;
+                      cfg.ControlStyle.BackgroundImage.HorizontalPosition = "left";
+                      cfg.ControlStyle.BackgroundImage.VerticalPosition = "center";
+                      cfg.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.Text;
+                      cfg.Properties.ValidationSettings.Display = Display.Dynamic;
+                      cfg.Properties.ValidationSettings.ErrorTextPosition = ErrorTextPosition.Bottom;
+                      cfg.Properties.ValidationSettings.SetFocusOnError = true;
+                      cfg.Properties.ValidationSettings.ErrorFrameStyle.CssClass = "AccountNameError";
+                      cfg.Properties.ValidationSettings.ValidateOnLeave = false;
+                      //cfg.Properties.ValidationSettings.RegularExpression.ErrorText = "Invalid user name";
+                      //cfg.Properties.ValidationSettings.RegularExpression.ValidationExpression = "\\w+";
+                      //cfg.Properties.ValidationSettings.RequiredField.IsRequired = true;
+                      //cfg.Properties.ValidationSettings.RequiredField.ErrorText = "The value is required";
+                      cfg.ShowModelErrors = true;
+                   });
+					 });           
+
+					 group.Items.Add(m => m.UserPassword, n => {
+						  n.Name="UserPassword";
+                    n.ShowCaption=DefaultBoolean.False;
+                    n.CssClass="LogonUserPasswordItem";
+                    n.NestedExtensionType = FormLayoutNestedExtensionItemType.TextBox;
+
+                    n.NestedExtension().TextBox(cfg => { 
+								cfg.Name = "UserPassword";
+								cfg.Width=Unit.Percentage(100);
+								cfg.ControlStyle.CssClass="UserPasswordTextBox";
+								cfg.Properties.Password = true;
+
+								cfg.Properties.FocusedStyle.CssClass="PasswordFocused";
+								cfg.ControlStyle.BackgroundImage.ImageUrl="/Content/Images/Logon/Password.png";
+								cfg.ControlStyle.BackgroundImage.Repeat=BackgroundImageRepeat.NoRepeat;
+								cfg.ControlStyle.BackgroundImage.HorizontalPosition= "left";
+								cfg.ControlStyle.BackgroundImage.VerticalPosition="center";
+								cfg.Properties.ClientSideEvents.Init = "App.onUserPasswordInit";
+                    });
+                });
+
+					 group.Items.AddEmptyItem().CssClass="LogonEmptyItem";
+
+           		 group.Items.Add(n => {
+						  n.Name="SignIn";
+                    n.ShowCaption=DefaultBoolean.False;
+                    n.NestedExtensionType = FormLayoutNestedExtensionItemType.Button;
+
+                    n.NestedExtension().Button(cfg =>
+                    {
+                        cfg.Name = "SignInButton";
+                        cfg.Text = "Sign In";
+                        cfg.ControlStyle.CssClass = "SignInButton";
+                        cfg.UseSubmitBehavior = true;
+                    });
+                });
+
+					 group.Items.Add(m=>m.ErrorText,n => {
+						  n.Name="ErrorText";
+                    n.ShowCaption=DefaultBoolean.False;
+						  n.ClientVisible=false;
+                    n.CssClass="LogonErrorItem";
+                    n.NestedExtensionType = FormLayoutNestedExtensionItemType.Label;
+
+                    n.NestedExtension().Label(cfg =>
+                    {
+                        cfg.Name = "ErrorText";
+                        cfg.Text = "";
+                        cfg.ControlStyle.CssClass = "ErrorLabel";
+                    });
+                });
+				}).Bind(Model).GetHtml()
+        </div>
+   }
+</div>

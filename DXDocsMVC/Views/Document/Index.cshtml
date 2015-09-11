@@ -1,0 +1,80 @@
+﻿<div>
+    <table class="DocumentHeadPane">
+        <tr>
+            <td>
+                <div class="LogoPane">
+                    <a class="LogoLink" href="/">
+								@Html.DevExpress().Image(imageSettings =>
+								{
+									 imageSettings.Name = "LogoImage";
+									 imageSettings.ImageUrl = "~/Content/Images/Icons/DXLogo.png";
+								}).GetHtml();                        
+                    </a>
+                </div>
+            </td>
+            <td class="TitleContainer">
+                <dx:ASPxLabel runat="server" ID="TitleLabel" CssClass="TitleLabel"></dx:ASPxLabel>
+                <div class="StatusMark">
+                    @Html.DevExpress().Label(labelSettings =>
+						  {
+                        labelSettings.Name = "StatusMarkLabel";
+                        labelSettings.ControlStyle.CssClass = "StatusMarkLabel";
+                        labelSettings.Text = Model.DocumentName;
+                        
+						  }).GetHtml();
+                </div>
+            </td>
+            <td>
+                <div class="UserMenuContainer">
+                    @using (Html.BeginForm("SignOut", "Home"))
+                    {
+								Html.Hidden("signout", "true");
+								Html.DevExpress().Menu(userSettings =>
+								{
+									 userSettings.Name = "UserMenu";
+									 userSettings.ControlStyle.CssClass = "UserMenu";
+									 userSettings.ControlStyle.Paddings.PaddingRight = Unit.Pixel(0);
+									 userSettings.RightToLeft = DefaultBoolean.True;
+									 userSettings.AppearAfter = 9999999;
+									 userSettings.ControlStyle.GutterWidth = Unit.Pixel(0);
+									 userSettings.ClientSideEvents.ItemClick = "App.onUserMenuItemClick";
+
+									 userSettings.Styles.Item.CssClass = "UserMenuItem";
+									 userSettings.Styles.Item.HoverStyle.CssClass = "UserMenuItem";
+									 userSettings.Styles.SubMenu.CssClass = "UserSubMenu";
+									 userSettings.Styles.SubMenuItem.CssClass = "UserSubMenuItem";
+									 userSettings.Styles.SubMenuItem.HoverStyle.CssClass = "UserSubMenuHoveredItem";
+
+									 userSettings.Items.Add(Model.UserMenuItems);
+
+								}).Render();
+                    }                    
+                </div>
+            </td>
+        </tr>
+    </table>
+    @*<asp:ContentPlaceHolder ID="HeaderHolder" runat="server">
+    </asp:ContentPlaceHolder>*@
+    @*<asp:ContentPlaceHolder ID="ContentHolder" runat="server">
+    </asp:ContentPlaceHolder>*@
+    @*<dx:ASPxLoadingPanel runat="server" ID="LoadingPanel" ClientInstanceName="LoadingPanel" Modal="true" CssClass="LoadingPanel">
+        <loadingdivstyle cssclass="LoadingDiv"></loadingdivstyle>
+        <template>
+            <img src="Content/Images/Icons/loading.gif"></img>
+        </template>
+    </dx:ASPxLoadingPanel>*@
+    @*<dx:ASPxCallbackPanel runat="server" ID="DialogCallbackPanel" ClientInstanceName="DialogCallbackPanel" CssClass="DialogCallbackPanel"
+                          Height="0" OnCallback="DialogCallbackPanel_Callback">
+        <settingsloadingpanel enabled="false" />
+        <clientsideevents begincallback="App.onControlBeginCallback" endcallback="App.onControlEndCallback" />
+        <panelcollection>
+            <dx:panelcontent>
+            </dx:panelcontent>
+        </panelcollection>
+    </dx:ASPxCallbackPanel>*@
+    @*<dx:ASPxCallback runat="server" ID="DocumentEditorCallback" ClientInstanceName="DocumentEditorCallback"
+                     OnCallback="DocumentEditorCallback_Callback">
+        <clientsideevents callbackcomplete="App.onDocumentEditorCallbackComplete" />
+    </dx:ASPxCallback>*@
+</div>
+

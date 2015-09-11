@@ -1,0 +1,125 @@
+﻿@model DXDocsMVC.Models.HomeModel
+
+<div class="mainPage">	 
+    @Html.DevExpress().Panel(panelSettings =>
+    {
+        panelSettings.Name = "LeftPanel";
+        panelSettings.FixedPosition = DevExpress.Web.PanelFixedPosition.WindowLeft;
+        panelSettings.Collapsible = true;
+        panelSettings.FixedPositionOverlap = true;
+        panelSettings.ControlStyle.CssClass = "LeftPanel";
+        panelSettings.Collapsible = true;
+        panelSettings.SettingsCollapsing.ExpandEffect = DevExpress.Web.PanelExpandEffect.Slide;
+        panelSettings.SettingsCollapsing.ExpandButton.Visible = true;
+        panelSettings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+
+        panelSettings.Styles.ExpandButton.CssClass = "LeftPanelExpandButton";
+        panelSettings.Styles.ExpandButton.SelectedStyle.CssClass = "LeftPanelSelectedExpandButton";
+        panelSettings.Styles.ExpandButton.HoverStyle.CssClass = "LeftPanelHoveredExpandButton";
+        panelSettings.Styles.ExpandButton.PressedStyle.CssClass = "LeftPanelPressedExpandButton";
+
+        panelSettings.ClientSideEvents.Collapsed = "App.onLeftPanelCollapsed";
+        panelSettings.SetContent(() =>
+        {
+            ViewContext.Writer.Write("<div class=\"LogoPane\">");
+            ViewContext.Writer.Write("    <a class=\"LogoLink\" href=\"/\">");
+            Html.DevExpress().Image(imageSettings =>
+            {
+                imageSettings.Name = "LogoImage";
+                imageSettings.ImageUrl = "~/Content/Images/Icons/DXLogo.png";
+            }).Render();
+            ViewContext.Writer.Write("    </a>");
+            ViewContext.Writer.Write("</div>");
+
+            ViewContext.Writer.Write("<div class=\"SidePane\">");
+            Html.DevExpress().Menu(menuSettings =>
+            {
+                menuSettings.Name = "FilterMenu";
+                menuSettings.ControlStyle.CssClass = "FilterMenu";
+                menuSettings.AllowSelectItem = true;
+                menuSettings.Orientation = System.Web.UI.WebControls.Orientation.Vertical;
+                menuSettings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+                menuSettings.ClientSideEvents.ItemClick = "App.onFilterMenuItemClick";
+                menuSettings.Styles.Item.CssClass = "FilterItem";
+                menuSettings.Styles.Item.HoverStyle.CssClass = "FilterHoveredItem";
+                menuSettings.Styles.Item.SelectedStyle.CssClass = "FilterSelectedItem";
+
+                menuSettings.Items.Add(Model.FilterMenuItems);
+            }).Render();
+            ViewContext.Writer.Write("</div>");
+        });
+    }).GetHtml()
+
+    @Html.DevExpress().Panel(panelSettings =>
+    {
+
+        panelSettings.Name = "TopPanel";
+        panelSettings.FixedPosition = DevExpress.Web.PanelFixedPosition.WindowTop;
+        panelSettings.ControlStyle.CssClass = "HeadPane";
+
+        panelSettings.SetContent(() =>
+        {            
+				ViewContext.Writer.Write("<table class=\"HeadTable\">");
+				ViewContext.Writer.Write("    <tr>");
+				ViewContext.Writer.Write("        <td class=\"ActionMenuContainer\">");
+            Html.DevExpress().Menu(actionSettings =>
+				{
+					 actionSettings.Name = "ActionMenu";
+					 actionSettings.ControlStyle.CssClass = "ActionMenu";
+					 actionSettings.Width = Unit.Percentage(100);
+					 actionSettings.ItemAutoWidth = false;
+					 actionSettings.EnableAdaptivity = true;
+					 actionSettings.AppearAfter = 9999999;
+					 actionSettings.ClientSideEvents.ItemClick = "App.onActionMenuItemClick";
+					 actionSettings.ClientSideEvents.Init = "App.onActionMenuInit";
+
+					 actionSettings.Styles.Item.CssClass = "ActionMenuItem";
+					 actionSettings.Styles.Item.HoverStyle.CssClass = "ActionMenuHoveredItem";
+					 actionSettings.Styles.SubMenu.CssClass = "ActionSubMenu";
+					 actionSettings.Styles.SubMenuItem.CssClass = "ActionSubMenuItem";
+					 actionSettings.Styles.SubMenuItem.HoverStyle.CssClass = "ActionSubMenuHoveredItem";
+
+					 actionSettings.Items.Add(Model.ActionMenuItems);
+
+				}).Render();
+				ViewContext.Writer.Write("        </td>");
+				ViewContext.Writer.Write("        <td class=\"UserMenuContainer\">");
+            using (Html.BeginForm("SignOut", "Home"))
+            {
+                Html.Hidden("signout", "true");
+                Html.DevExpress().Menu(userSettings =>
+                {
+                    userSettings.Name = "UserMenu";
+                    userSettings.ControlStyle.CssClass = "UserMenu";
+                    userSettings.ControlStyle.Paddings.PaddingRight = Unit.Pixel(0);
+                    userSettings.RightToLeft = DefaultBoolean.True;
+                    userSettings.AppearAfter = 9999999;
+                    userSettings.ControlStyle.GutterWidth = Unit.Pixel(0);
+                    userSettings.ClientSideEvents.ItemClick = "App.onUserMenuItemClick";
+
+                    userSettings.Styles.Item.CssClass = "UserMenuItem";
+                    userSettings.Styles.Item.HoverStyle.CssClass = "UserMenuItem";
+                    userSettings.Styles.SubMenu.CssClass = "UserSubMenu";
+                    userSettings.Styles.SubMenuItem.CssClass = "UserSubMenuItem";
+                    userSettings.Styles.SubMenuItem.HoverStyle.CssClass = "UserSubMenuHoveredItem";
+						  
+                    userSettings.Items.Add(Model.UserMenuItems);
+
+                }).Render();
+            }
+				ViewContext.Writer.Write("        </td>");
+				ViewContext.Writer.Write("    </tr>");
+				ViewContext.Writer.Write("</table>");
+        });
+    }).GetHtml()
+    <div class="ContentPane">
+		  @Html.DevExpress().LoadingPanel(loadingSettings =>
+		  {
+				loadingSettings.Name = "LoadingPanel";
+				loadingSettings.Modal = true;
+				loadingSettings.Styles.LoadingDiv.CssClass = "LoadingDiv";
+				loadingSettings.SetTemplateContent("<img src='/Content/Images/Icons/loading.gif'></img>");
+		  }).GetHtml()
+        @Html.Action("CallbackPanelPartial")
+    </div>
+</div>

@@ -1,0 +1,73 @@
+﻿
+<div id="BrowserContainer" class="BrowserContainer">
+    @Html.DevExpress().Panel(panelSettings =>
+    {
+
+        panelSettings.Name = "BrowserPanel";
+        panelSettings.Width = Unit.Percentage(100);        
+        panelSettings.ClientVisible = !Model.IsFilterApplied;
+        panelSettings.ControlStyle.CssClass = Model.BrowserPanelCssClass;
+
+        panelSettings.SetContent(() =>
+        {
+            Html.DevExpress().Label(labelSettings =>
+            {
+                labelSettings.Name = Model.PanelName;
+            }).Render();
+        });
+    }).GetHtml()
+    <div class="ViewModeContainer">
+       @Html.DevExpress().Menu(menuSettings =>
+		 {
+			  menuSettings.Name = "ViewModeMenu";
+			  menuSettings.ControlStyle.CssClass = "ViewModeMenu";
+			  menuSettings.ShowAsToolbar = true;
+
+			  menuSettings.AllowSelectItem = true;
+			  menuSettings.Orientation = Orientation.Horizontal;
+			  menuSettings.Width = Unit.Percentage(100);
+			  menuSettings.ClientSideEvents.ItemClick = "App.onViewModeMenuItemClick";
+			  menuSettings.Styles.Item.CssClass = "ViewModeMenuItem";
+			  menuSettings.Styles.Item.Width=Unit.Pixel(29);
+			  menuSettings.Styles.Item.Height = Unit.Pixel(28);
+			  menuSettings.Styles.Item.HoverStyle.CssClass = "ViewModeMenuHoveredItem";
+			  
+			  menuSettings.Items.Add(item =>
+			  {
+					item.Name = "Thumbnails";
+					item.ToolTip = "Thumbnails view";
+					item.Selected = Model.CurrentViewModeName != "Details";
+					item.ItemStyle.BackgroundImage.ImageUrl = Url.Content("~/Content/Images/Icons/Thumbnails_off.png");
+					item.ItemStyle.BackgroundImage.Repeat = BackgroundImageRepeat.NoRepeat;
+					item.ItemStyle.BackgroundImage.HorizontalPosition = "center";
+					item.ItemStyle.BackgroundImage.VerticalPosition = "center";
+
+					item.ItemStyle.SelectedStyle.BackgroundImage.ImageUrl = Url.Content("~/Content/Images/Icons/Thumbnails_on.png");
+					item.ItemStyle.SelectedStyle.BackgroundImage.Repeat = BackgroundImageRepeat.NoRepeat;
+					item.ItemStyle.SelectedStyle.BackgroundImage.HorizontalPosition = "center";
+					item.ItemStyle.SelectedStyle.BackgroundImage.VerticalPosition = "center";
+			  });
+			  menuSettings.Items.Add(item =>
+			  {
+					item.Name = "Details";
+					item.ToolTip = "Details view";
+					item.Selected = Model.CurrentViewModeName == "Details";
+					item.ItemStyle.BackgroundImage.ImageUrl = Url.Content("~/Content/Images/Icons/Details_off.png");
+					item.ItemStyle.BackgroundImage.Repeat = BackgroundImageRepeat.NoRepeat;
+					item.ItemStyle.BackgroundImage.HorizontalPosition = "center";
+					item.ItemStyle.BackgroundImage.VerticalPosition = "center";
+
+					item.ItemStyle.SelectedStyle.BackgroundImage.ImageUrl = Url.Content("~/Content/Images/Icons/Details_on.png");
+					item.ItemStyle.SelectedStyle.BackgroundImage.Repeat = BackgroundImageRepeat.NoRepeat;
+					item.ItemStyle.SelectedStyle.BackgroundImage.HorizontalPosition = "center";
+					item.ItemStyle.SelectedStyle.BackgroundImage.VerticalPosition = "center";
+			  });
+
+		 }).GetHtml()
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.Action("FileManagerPartial")
+
+    }  
+</div>

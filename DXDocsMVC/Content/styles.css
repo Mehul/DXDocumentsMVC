@@ -1,0 +1,801 @@
+﻿html, body, form
+{
+    margin: 0;
+}
+html, body, .MainForm, .MainPane, .ContentPane, .CallbackPanel
+{
+    height: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body 
+{
+    background: white;
+    color: Black;
+    font: 14px 'Segoe UI','Helvetica Neue','Droid Sans',Arial,Tahoma,Geneva,Sans-serif;
+    overflow-y: hidden;
+}
+
+.LeftPanel
+{
+    padding: 0!important;
+    border-right-width: 0px !important;
+    background-color: #4FA072!important;
+    color: white;
+}
+.LeftPanel .LeftPanelExpandButton img
+{
+    background-position: -168px -174px!important;
+}
+.LeftPanel .LeftPanelSelectedExpandButton img
+{
+    background-position: -84px -258px!important;
+}
+.LeftPanel .LeftPanelHoveredExpandButton,
+.LeftPanel .LeftPanelPressedExpandButton
+{
+    background-color: #275039!important;
+}
+.SidePane
+{
+    width: 255px;
+}
+.HeadPane
+{
+    height: 60px;
+    padding: 0!important;
+}
+.HeadPane,
+.ViewModeContainer
+{
+    background-color: #F2F3F4!important;
+}
+.LogoPane
+{
+    height: 45px;
+    padding-left: 20px;
+    padding-top: 15px;
+}
+.LogoLink
+{
+    text-decoration: none;
+    color: white;
+}
+
+.ActionMenu,
+.FilterMenu,
+.UserMenu
+{
+    background-color: transparent!important;
+}
+table.HeadTable
+{
+    border-width: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+table.HeadTable > tbody > tr > td
+{
+    padding: 0;
+}
+.ActionMenuContainer
+{
+    width: 100%;
+    padding-right: 20px!important;
+}
+.ActionMenu,
+.UserMenu
+{
+    padding: 0!important;
+    margin: 0!important;
+}
+.ActionMenu .ActionMenuItem
+{
+    height: 44px;
+    padding-top: 16px;
+}
+.ActionMenu
+{
+    padding-left: 10px!important;
+}
+.ActionMenu .ActionMenuItem .dxm-popOut,
+.UserMenu .UserMenuItem .dxm-popOut
+{
+    padding-top: 0!important;
+    margin-top: -5px;
+}
+.ActionMenu .ActionMenuItem.dxm-subMenu .dxm-content,
+.UserMenu .UserMenuItem.dxm-subMenu .dxm-content
+{
+    padding-right: 3px!important;
+}
+.ActionMenu .ActionMenuItem.dxm-dropDownMode .dxm-popOut
+{
+    padding-left: 0!important;
+    /*padding-right: 20px!important;*/
+}
+.ActionMenu .ActionMenuHoveredItem,
+.UserMenu .UserMenuHoveredItem
+{
+    background-color: transparent!important;
+}
+    .ActionMenu .ActionMenuHoveredItem {
+        border-bottom: 4px solid #4FA072;
+        box-sizing: border-box !important;
+    }
+.ActionMenu .dxm-separator
+{
+    padding-left: 14px!important;
+    padding-right: 14px!important;
+}
+.ActionMenu > ul {
+    height: 60px;
+}
+.ActionMenu .dxm-noImage {
+    height: 100% !important;
+    padding-top: 27px !important;
+    padding-bottom: 5px !important;
+}
+.ActionSubMenu .ActionSubMenuItem,
+.UserSubMenu .UserSubMenuItem
+{
+    height: 30px;
+    padding-top: 5px!important;
+    padding-bottom: 5px!important;
+    padding-left: 4px!important;
+    padding-right: 6px!important;
+}
+.ActionSubMenu .dxm-separator
+{
+    padding-top: 5px!important;
+    padding-bottom: 5px!important;
+}
+.ActionSubMenu .ActionSubMenuHoveredItem,
+.UserSubMenu .UserSubMenuHoveredItem
+{
+    background-color: #D5D8E0!important;
+}
+.UserMenu .UserMenuItem .dxm-content
+{
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}
+.UserMenu .UserMenuItem .dxm-image
+{
+    margin-top: 0!important;
+    margin-bottom: 0!important;
+}
+.UserMenu .UserMenuItem .dxm-popOut
+{
+    display: none!important;
+}
+.UserSubMenu
+{
+    min-width: 150px;
+}
+.UserSubMenu .UserSubMenuItem
+{
+    padding-right: 38px!important;
+}
+
+.UserMenuContainer
+{
+    padding-right: 1px;
+}
+
+.ActionMenu, .UserMenu
+{
+    margin: 10px;
+    color: black!important;
+    font-size: 14px;
+}
+.FilterMenu
+{
+    margin-left: 10px;
+    width: 170px;
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0;
+}
+.FilterMenu .FilterItem,
+.FilterMenu .FilterHoveredItem,
+.FilterMenu .FilterSelectedItem
+{
+    color: white!important;
+}
+.FilterMenu .FilterHoveredItem,
+.FilterMenu .FilterSelectedItem
+{
+    background-color: #275039!important;
+}
+.FilterMenu .FilterItem .dxm-content
+{
+    padding-top: 17px!important;
+    padding-left: 18px!important;
+}
+.FilterMenu .FilterItem
+{
+    height: 60px;
+}
+
+.DocumentHeadPane
+{
+    width: 100%;
+    border-bottom: 1px solid #cbcbcb;
+}
+.DocumentHeadPane .LogoPane
+{
+    background-color: #4FA072;
+    padding-left: 22px;
+    padding-right: 25px;
+    width: 197px;
+}
+.DocumentHeadPane .TitleContainer
+{
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+.DocumentHeadPane .TitleContainer .TitleLabel
+{
+    font-size: 24px;
+}
+.DocumentHeadPane .TitleContainer .StatusMark
+{
+    display: inline-block;
+}
+.DocumentHeadPane .TitleContainer .TitleLabel,
+.DocumentHeadPane .TitleContainer .StatusMark
+{
+    vertical-align: middle;
+}
+.DocumentHeadPane .TitleContainer .StatusMarkLabel
+{
+    font-size: 13px!important;
+    color: #767676!important;
+    position: fixed;
+    top: 30px;
+}
+
+.DocumentRibbon .dxtc-strip
+{
+    padding-top: 1px!important;
+}
+
+.DialogPopupControl
+{
+    width: 400px;
+}
+
+.DialogPopupControl .DialogFormLayout
+{
+    width: 100%;
+}
+.DialogFormLayout .DialogCaptionCell
+{
+    padding-right: 13px!important;
+}
+
+.DialogPopupControl .DialogPopupContent
+{
+    padding-left: 5px!important;
+    padding-right: 5px!important;
+}
+.DialogPopupControl .DialogPopupFooter
+{
+    padding: 10px 15px;
+    text-align: right;
+}
+
+.DialogPopupControl .DialogButton
+{
+    width: 94px;
+    margin-right: 10px;
+}
+
+.DialogPopupControl .DialogButtonsWrapper
+{
+    display: inline-block;
+    text-align: right;
+    vertical-align: middle;
+}
+
+/* Document Browser */
+.ViewModeContainer
+{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-right: 1px;
+}
+.ViewModeMenu
+{
+    padding: 0!important;
+}
+.ViewModeMenu .ViewModeMenuItem
+{
+    margin: 0!important;
+    border-width: 0!important;
+    border-radius: 0!important;
+    padding: 1px 0 1px!important;
+    border-image-width: 0!important;
+    border: 0!important;
+    background-color: transparent!important;
+}
+
+.BrowserContainer
+{
+    position: relative;
+    height: 100%;
+}
+.BrowserContainer.ShowPanel
+{
+    padding-top: 31px;
+    box-sizing: border-box;
+}
+
+.BrowserPanel
+{
+    height: 31px;
+    border-bottom: 1px solid #cbcbcb;
+    padding: 5px 0 5px 28px;
+    position: absolute;
+    top: 0;
+    box-sizing: border-box;
+}
+
+#FileManager_Splitter {
+    border-width: 0px;
+}
+
+.DetailsView .dxgvHSDC + .dxgvCSD {
+    margin-top: 20px;
+}
+
+/* file manager items */
+.FileManager .FileManagerItem
+{
+    margin: 0!important;
+    background-color: transparent!important;
+}
+.FileManager .FileManagerItem.HoveredFileManagerItem .itemFooter,
+.FileManager .FileManagerItem.FocusedFileManagerItem .itemFooter,
+.FileManager .FileManagerItem.SelectedActiveFileManagerItem .itemFooter,
+.FileManager .FileManagerItem.SelectedInactiveFileManagerItem .itemFooter
+{
+    background-color: #F2F2F2!important;
+}
+.FileManager.DetailsView .FileManagerItem.HoveredFileManagerItem,
+.FileManager.DetailsView .FileManagerItem.FocusedFileManagerItem,
+.FileManager.DetailsView .FileManagerItem.SelectedActiveFileManagerItem,
+.FileManager.DetailsView .FileManagerItem.SelectedInactiveFileManagerItem
+{
+    background-color: #F2F3F4!important;
+}
+.FileManager .FileManagerItem .dxichSys
+{
+    top: 17px!important;
+    right: -13px!important;
+    background-color: #343434!important;
+}
+.dxfm-rInput {
+    bottom: 21px !important;
+    left: 38px !important;
+    font-size: 16px !important;
+    width: 218px !important;
+}
+.dxfm-createHelper .dxfm-rInput {
+    width: 179px !important;
+}
+/* file manager item template */
+.dxgvHSDC {
+    background: url(Images/Icons/gridViewHeaderBorder.png) repeat-x bottom;
+    padding-bottom: 1px !important;
+}
+.dxfmGridHeader {
+    border: 0px !important;
+    font-weight: 800 !important;
+}
+.dxfmGridHeader td {
+    color: black !important;
+}
+.dxfmGridHeader > table {
+    width: auto !important;
+}
+#FileManager_Splitter_FilesGridView_col0 {
+    visibility: hidden;
+}
+.FileManager.DetailsView .ItemThumbnail
+{
+    max-width: 50px;
+    height: 50px;
+}
+.FileManager.DetailsView .ItemLink
+{
+    font-size: 20px;
+    text-decoration: none;
+    color: #343434;
+}
+    .FileManager.DetailsView .ItemLink.ItemName {
+        margin-left: 10px;
+    }
+.FileManager.DetailsView .ItemCell
+{
+    color: #343434!important;
+    border-right-color: transparent!important;
+    padding: 3px 0;
+}
+.FileManager.DetailsView .ItemLink.ItemThumb
+{
+    margin-left: 28px;
+}
+.FileManager.DetailsView .ItemDetails
+{
+    margin-top: 4px;
+    font-size: 12px;
+}
+.FileManager.DetailsView .ItemOwner
+{
+    margin-left: 10px;
+    font-size: 15px;
+}
+.FileManager.DetailsView .ItemLastWriteTime,
+.FileManager.DetailsView .ItemSize
+{
+    margin-left: 10px;
+    font-size: 15px;
+}
+.FileManager.DetailsView .ItemSize {
+    float: left;
+}
+.FileManager.DetailsView .ItemLockImage
+{
+    margin-top: 19px;
+    margin-left: 40px;
+}
+.FileManager.DetailsView .ItemHolder
+{
+    float: left;
+    margin: 9px 0 9px;
+}
+
+.itemHolder
+{
+    padding: 30px 0 0 30px;
+    display: block;
+    text-decoration: none;
+    color: #343434;
+}
+.itemThumb
+{
+    width: 238px;
+    height: 194px;
+    border: 1px solid lightgray;
+    background: center no-repeat;
+}
+.ItemThumbGradient {
+    background: url(Images/Icons/gradient.png);
+    background-repeat: repeat-x;
+    margin-top: -35px;
+    margin-left: 1px;
+    height: 35px;
+    width: 238px;
+}
+.itemFooter
+{
+    text-align: left;
+    border: 1px solid lightgray;
+    border-top-width: 0px;
+    height: 43px;
+    font-size: 0;
+    background-color: transparent;
+}
+.itemFooter .itemIcon
+{
+    max-width: 39px;
+    margin: -7px 0 0 -1px;
+}
+.itemFooter .itemUserIcon
+{
+    width: 16px;
+    height: 16px;
+}
+.itemText,
+.itemIcon,
+.itemUserIcon
+{
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+.itemUserIcon
+{
+    margin-left: 5px;
+    margin-right: 14px;
+}
+.ThumbnailsView .itemUserIcon {
+    margin-top: 13px !important;
+    float: right;
+}
+
+.dxFirefox .ThumbnailsView .itemUserIcon {
+    margin-top: -31px !important;
+}
+.itemFooter .itemText
+{
+    width: 180px;
+    overflow: hidden;
+    font-size: 14px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+}
+.itemFooter.itemLocked .itemText
+{
+    width: 126px;
+}
+.itemUserIcon
+{
+    margin-top: 2px;
+}
+.itemName
+{
+    font-size: 16px;
+}
+.itemDate
+{
+    font-size: 10px;
+}
+.itemName, .itemDate
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.FileManager .dxsplControl_Mulberry
+{
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+}
+.FileManager .BreadCrumbs .dxsplLCC
+{
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}
+.FileManager .BreadCrumbs .dxfm-bcContainer
+{
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+    height: 30px;
+}
+.FileManager .BreadCrumbs .BreadCrumbsItem
+{
+    font-size: 14px;
+    color: black;
+}
+.FileManager .BreadCrumbsHoveredItem
+{
+    background-color: #D5D8E0!important;
+}
+.FileManager .BreadCrumbs .BreadCrumbsItem .dxWeb_fmBreadCrumbsUpButton_Mulberry
+{
+    margin-bottom: 0!important;
+}
+.FileManager .BreadCrumbs .BreadCrumbsItem,
+.FileManager .BreadCrumbs .dxfm-bcLineSeparator,
+.FileManager .BreadCrumbs .dxfm-bcContainer > span
+{
+    display: block;
+    float: left;
+    padding-top: 5px!important;
+    padding-bottom: 5px!important;
+    height: 20px;
+    border-top-width: 0!important;
+    border-bottom-width: 0!important;
+}
+.FileManager .BreadCrumbs .BreadCrumbsItem
+{
+    padding-left: 11px!important;
+    padding-right: 11px!important;
+    margin: 0!important;
+    margin-left: -4px !important;
+    border-width: 0!important;
+}
+.dxfmControl_Mulberry .dxfm-itemMask {
+    background-color: #4FA072;
+    top: 15px;
+    left: 15px;
+    margin: 0 -15px -15px 0;
+}
+.dxWeb_fmBreadCrumbsSeparatorArrow_Mulberry {
+    background-image: url(Images/Icons/.dxWeb_fmBreadCrumbsSeparatorArrow_Mulberry.png);
+    background-position: 0px 0px;
+}
+.dxfm-breadCrumbs .dxfm-bcLineSeparator {
+    margin: 0;
+    margin-right: 4px;
+}
+.dxfmControl_Mulberry .dxsplLCC {
+    padding-left: 0 !important;
+}
+
+/* file manager dialogs*/
+.dxtvControl_Mulberry .dxtv-ndSel {
+    background-color: #4FA072;
+}
+
+/* logon container*/
+.LogonContainer
+{
+    background-color: #4FA072;
+    color: white;
+    float: right;
+    width: 68%;
+    min-width: 815px;
+    height: 448px;
+    margin-top: 178px;
+}
+.LogonContainer.LogonError
+{
+    height: 490px;
+}
+.LogonContainer .LogonContent
+{
+    padding-top: 66px;
+    padding-left: 40px;
+}
+.LogonContainer .LogonFormLayout
+{
+    width: 540px;
+    margin-left: 32px;
+    margin-top: 5px;
+}
+.LogonContainer .LogonGroupBox > table
+{
+    margin-top: -31px!important;
+}
+.LogonContainer .LogonEmptyItem
+{
+    height: 28px!important;
+}
+.LogonContainer .LogonCaption,
+.LogonContainer .LogonLogoCaption
+{
+    color: white!important;
+    background-color: transparent!important;
+}
+.LogonContainer .LogonLogoCaption
+{
+    font-size: 60px;
+    font-weight: 100;
+}
+.LogonContainer .LogonCaption
+{
+    font-size: 27px;
+    font-weight: 300;
+}
+.LogonContainer .LogonGroupBox
+{
+    border-width: 0!important;
+}
+.LogonContainer .LogonAccountNameItem
+{
+    padding-bottom: 7px!important;
+}
+.LogonContainer .LogonUserPasswordItem
+{
+    padding-top: 7px!important;
+}
+.LogonContainer .AccountNameTextBox .dxic,
+.LogonContainer .UserPasswordTextBox .dxic
+{
+    padding-left: 50px!important;
+}
+.LogonContainer .AccountNameTextBox input,
+.LogonContainer .UserPasswordTextBox input
+{
+    font-size: 25px;
+    font-weight: 400;
+    background-color: transparent!important;
+}
+.LogonContainer .AccountNameTextBox,
+.LogonContainer .UserPasswordTextBox
+{
+    background-position: 7px 50%!important;
+}
+.LogonContainer .AccountNameFocused,
+.LogonContainer .PasswordFocused
+{
+    border-color: lightgray!important;
+    outline-color: lightgray!important;
+}
+.LogonContainer .AccountNameError,
+.LogonContainer .ErrorLabel
+{
+    color: white!important;
+    font-size: 19px;
+    font-weight: 300;
+}
+.LogonContainer .SignInButton
+{
+    width: 149px;
+    height: 60px;
+    color: white!important;
+    background-image: none!important;
+    background-color: transparent!important;
+    border: 2px solid white!important;
+    border-radius: 0;
+    font-size: 21px;
+    font-weight: 100;
+}
+.LogonContainer .ErrorLabel
+{
+    width: 490px;
+}
+.LogonContainer .LogonErrorItem
+{
+    padding-top: 17px!important;
+}
+.LogonContainer .dxeTextBox_Mulberry {
+    border-width: 0 !important;
+}
+
+/* SpreadSheet */
+.dxtcLite_Mulberry > .dxtc-stripContainer .dxtc-activeTab .dxtc-link {
+    color: #0072c6;
+}
+
+/* dialogs common styles */
+.dxeFocused_Mulberry {
+    border-color: #4FA072;
+    outline-color: #4FA072;
+}
+
+.dxWeb_edtCheckBoxChecked_Mulberry,
+.dxWeb_edtCheckBoxCheckedDisabled_Mulberry,
+.dxWeb_edtCheckBoxGrayed_Mulberry,
+.dxWeb_edtCheckBoxGrayedDisabled_Mulberry,
+.dxWeb_edtCheckBoxUnchecked_Mulberry,
+.dxWeb_edtCheckBoxUncheckedDisabled_Mulberry,
+
+.dxEditors_edtRadioButtonChecked_Mulberry, 
+.dxEditors_edtRadioButtonCheckedDisabled_Mulberry, 
+.dxEditors_edtRadioButtonUnchecked_Mulberry, 
+.dxEditors_edtRadioButtonUncheckedDisabled_Mulberry,
+
+.dxreControl_Mulberry .dxreDlgListBox .dxreDlgListSelected,
+
+.dxeListBoxItemSelected_Mulberry
+ {
+    background-color: #4FA072;
+}
+
+/* loading panel */
+.LoadingDiv {
+    background-color: #101f15 !important;
+    opacity: .25 !important;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Style=0, Opacity=25) !important;
+}
+#LoadingPanel, #LoadingPanel > table {
+    background-color: transparent !important;
+    border-width: 0 !important;
+    box-shadow: none;
+}
+
+#Spreadsheet, #RichEdit {
+    border-top-width: 0;
+}
+
+
+/* menu adaptivity */
+@media (-webkit-min-device-pixel-ratio: 2), (max-width: 520px) {
+    .UserMenuItem {
+        min-width: 60px !important;
+    }
+    .UserMenuItem span {
+        display: none !important;
+    }
+    .UserSubMenu {
+        min-width: 60px;
+    }
+}

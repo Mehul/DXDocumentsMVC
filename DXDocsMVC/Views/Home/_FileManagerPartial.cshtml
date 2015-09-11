@@ -1,0 +1,163 @@
+@Html.DevExpress().FileManager(settings =>
+    {
+        settings.Name = "FileManager";
+        settings.Height = Unit.Percentage(100);
+        settings.ControlStyle.CssClass = Model.FileManagerCssClass;
+
+        settings.CallbackRouteValues = new { Controller = "Home", Action = "FileManagerPartial" };
+        settings.DownloadRouteValues = new { Controller = "Home", Action = "FileManagerPartialDownload" };
+
+        //settings.Settings.RootFolder = "Files";
+        settings.Settings.ThumbnailFolder = "~\\Thumb\\";
+        settings.Settings.EnableMultiSelect = false;
+        settings.Settings.AllowedFileExtensions = ".rtf,.doc,.docx,.txt,.xlsx,.png,.gif,.jpg,.jpeg,.ico,.bmp,.avi,.mp3,.xml,.pdf".Split(',');
+
+        settings.SettingsEditing.AllowCopy = true;
+        settings.SettingsEditing.AllowCreate = true;
+        settings.SettingsEditing.AllowDelete = true;
+        settings.SettingsEditing.AllowDownload = true;
+        settings.SettingsEditing.AllowMove = true;
+        settings.SettingsEditing.AllowRename = true;
+
+        settings.SettingsUpload.Enabled = Model.FileManagerUploadEnabled;
+        settings.SettingsUpload.ShowUploadPanel = Model.FileManagerUploadShowUploadPanel;
+        settings.SettingsUpload.ValidationSettings.MaxFileSize = Model.FileManagerUploadMaxFileSize;
+        settings.SettingsUpload.DialogTriggerID = "ActionMenu_DXI1_";
+        settings.SettingsUpload.AdvancedModeSettings.EnableMultiSelect = true;
+        settings.SettingsUpload.AdvancedModeSettings.EnableDragAndDrop = true;
+
+        settings.SettingsBreadcrumbs.Visible = Model.FileManagerBreadCrumbsVisible;
+        settings.Images.FileAreaFolder.Url = Url.Content(Model.FileManagerFileAreaFolderUrl);
+
+        settings.SettingsFolders.Visible = false;
+
+        settings.SettingsFileList.View = Model.CurrentViewMode;
+        settings.SettingsFileList.ShowFolders = true;
+        settings.SettingsFileList.ShowParentFolder = false;
+        settings.SettingsFileList.DetailsViewSettings.ThumbnailHeight = Unit.Pixel(50);
+        settings.SettingsFileList.DetailsViewSettings.ThumbnailWidth = Unit.Pixel(50);
+
+        settings.SettingsFileList.ThumbnailsViewSettings.ThumbnailHeight = Model.FileManagerThumbnailHeight;
+        settings.SettingsFileList.ThumbnailsViewSettings.ThumbnailWidth = Model.FileManagerThumbnailWidth;
+
+        settings.StylesDetailsView.CommandColumn.Width = Unit.Pixel(80);
+
+        settings.Styles.File.Width = Model.FileManagerFileWidth;
+        settings.Styles.File.Height = Model.FileManagerFileHeight;
+
+        var col = settings.SettingsFileList.DetailsViewSettings.Columns.Add(FileInfoType.Thumbnail, " ");
+        col.Width = Unit.Pixel(78);
+        col.SetItemTemplateContent(container =>
+        {
+            DXDocsMVC.Models.FileManagerHelperModel n = new DXDocsMVC.Models.FileManagerHelperModel(container.Item, Model.DocumentsApp, Model.SourceName);
+				string s = String.Format(@"<a class=""ItemLink ItemThumb"" href=""{0}""  onmousedown=""{1}"" onclick=""{2}"" target=""{3}""><img class=""ItemThumbnail"" alt=""{4}"" src=""{5}"" /></a>",
+										  n.ImageHolderHRef, n.ImageHolderOnDown, n.ImageHolderOnClick, n.ImageHolderTarget,
+                                n.Name, n.IconImageDetailsSrc);
+            ViewContext.Writer.Write(s);
+        });
+        var colName = settings.SettingsFileList.DetailsViewSettings.Columns.Add(FileInfoType.FileName, "Name");
+        colName.Width = Unit.Percentage(50);
+        colName.SetItemTemplateContent(container =>{
+				DXDocsMVC.Models.FileManagerHelperModel n = new DXDocsMVC.Models.FileManagerHelperModel(container.Item, Model.DocumentsApp, Model.SourceName);
+				string s = String.Format(@"<a class=""ItemLink ItemName"" href=""{0}""  onmousedown=""{1}"" onclick=""{2}"" target=""{3}"" title=""{4}"">{4}</a>",
+										  n.ImageHolderHRef, n.ImageHolderOnDown, n.ImageHolderOnClick, n.ImageHolderTarget,
+										  n.Name);
+            ViewContext.Writer.Write(s);
+		  });
+
+        var colMod = settings.SettingsFileList.DetailsViewSettings.Columns.Add(FileInfoType.LastWriteTime, "Modified");
+        colMod.Width = Unit.Percentage(21);
+        colMod.SetItemTemplateContent(container =>
+        {
+				DXDocsMVC.Models.FileManagerHelperModel n = new DXDocsMVC.Models.FileManagerHelperModel(container.Item, Model.DocumentsApp, Model.SourceName);
+				string s = String.Format("<span class=\"ItemLastWriteTime\">{0}</span>", n.ModifiedText);
+            ViewContext.Writer.Write(s);
+        });
+
+        var colSize = settings.SettingsFileList.DetailsViewSettings.Columns.Add(FileInfoType.Size, "Size");
+        colMod.Width = Unit.Percentage(9);
+        colMod.SetItemTemplateContent(container => {
+				DXDocsMVC.Models.FileManagerHelperModel n = new DXDocsMVC.Models.FileManagerHelperModel(container.Item, Model.DocumentsApp, Model.SourceName);
+				string s = String.Format("<span class=\"ItemSize\">{0}</span>", n.SizeText);
+            ViewContext.Writer.Write(s);
+		  });
+
+        var colOwner = settings.SettingsFileList.DetailsViewSettings.Columns.Add();
+        colOwner.Caption = "Owner";
+        colOwner.Width = Unit.Percentage(20);
+        colOwner.SetItemTemplateContent(container =>
+        {
+				DXDocsMVC.Models.FileManagerHelperModel n = new DXDocsMVC.Models.FileManagerHelperModel(container.Item, Model.DocumentsApp, Model.SourceName);
+				string s = String.Format("<span class=\"ItemSize\">{0}</span>", n.OwnerText);
+            ViewContext.Writer.Write(s);
+        });
+        var colBlank = settings.SettingsFileList.DetailsViewSettings.Columns.Add();
+		  colBlank.Caption = " ";
+		  colBlank.SetItemTemplateContent("");
+        var colLock = settings.SettingsFileList.DetailsViewSettings.Columns.Add();
+        colLock.Caption = " ";
+        colLock.Width = Unit.Pixel(40);
+        colLock.SetItemTemplateContent(container => {
+				DXDocsMVC.Models.FileManagerHelperModel n = new DXDocsMVC.Models.FileManagerHelperModel(container.Item, Model.DocumentsApp, Model.SourceName);
+				string s = String.Format(@"<img class=""itemUserIcon"" style=""{0}"" src=""{1}"" alt=""{2}"" title=""{3}"" />",
+						  n.ItemLockStyle, n.ItemLockSrc, n.ItemLockAlt, n.ItemLockTitle);
+				ViewContext.Writer.Write(s);
+		  });
+
+        settings.SettingsFileList.ThumbnailsViewSettings.SetThumbnailViewItemTemplateContent(container => {
+
+            DXDocsMVC.Models.FileManagerHelperModel n = new DXDocsMVC.Models.FileManagerHelperModel(container.Item, Model.DocumentsApp, Model.SourceName);
+
+            ViewContext.Writer.Write(String.Format(@"<a class=""itemHolder"" href=""{0}""  onmousedown=""{1}"" onclick=""{2}"" target=""{3}"">
+                                    <div class=""itemThumb"" style=""{4}""></div>
+                                    <div class=""ItemThumbGradient""></div>
+                                    <div class=""{5}"">
+													 <img id=""ItemIconImage"" class=""itemIcon"" src=""{6}"" style=""{7}"" alt=""{8}"" />
+                                        <div class=""itemText"">
+                                            <div class=""itemName"">{9}</div>
+                                            <div id=""ItemInfoDiv"" class=""itemDate"">{10}</div>
+                                        </div>
+                                        <img class=""itemUserIcon"" style=""{11}"" src=""{12}"" alt=""{13}"" title=""{14}"" />
+                                    </div>
+                                </a>",
+										  n.ImageHolderHRef, n.ImageHolderOnDown, n.ImageHolderOnClick, n.ImageHolderTarget,
+										  n.ThumbImageStyle,
+										  n.FooterClass,
+										  n.IconImageSrc, n.IconImageAlt, n.IconImageStyle,
+										  n.Name,
+										  n.ModifiedText,
+										  n.ItemLockStyle, n.ItemLockSrc, n.ItemLockAlt, n.ItemLockTitle ));
+        });
+
+        settings.SettingsBreadcrumbs.Visible = true;
+        settings.SettingsBreadcrumbs.ShowParentFolderButton = true;
+        settings.SettingsBreadcrumbs.Position = BreadcrumbsPosition.Top;
+
+        settings.SettingsToolbar.Visible = false;
+        settings.SettingsLoadingPanel.Enabled = false;        
+        settings.ClientSideEvents.ToolbarUpdating = "App.onFileManagerToolbarUpdating";
+        settings.ClientSideEvents.BeginCallback = "App.onControlBeginCallback";
+        settings.ClientSideEvents.EndCallback = "App.onControlEndCallback";
+        settings.StylesDetailsView.CommandColumn.Width = Unit.Pixel(60);
+        settings.StylesDetailsView.CommandColumn.CssClass = "ItemCell";
+        settings.StylesDetailsView.Cell.CssClass = "ItemCell";
+        settings.Styles.File.Paddings.Padding = Unit.Pixel(0);
+        settings.Styles.File.CssClass = "FileManagerItem";
+
+        settings.Styles.File.HoverStyle.CssClass = "HoveredFileManagerItem";
+        settings.Styles.File.FocusedStyle.CssClass = "FocusedFileManagerItem";
+        settings.Styles.File.SelectionActiveStyle.CssClass = "SelectedActiveFileManagerItem";
+        settings.Styles.File.SelectionInactiveStyle.CssClass = "SelectedInactiveFileManagerItem";
+
+        settings.Styles.FileAreaFolder.Paddings.Padding = Unit.Pixel(0);
+        settings.Styles.FileAreaFolder.CssClass = "FileManagerItem";
+        settings.Styles.FileAreaFolder.HoverStyle.CssClass = "HoveredFileManagerItem";
+        settings.Styles.FileAreaFolder.FocusedStyle.CssClass = "FocusedFileManagerItem";
+        settings.Styles.FileAreaFolder.SelectionActiveStyle.CssClass = "SelectedActiveFileManagerItem";
+        settings.Styles.FileAreaFolder.SelectionInactiveStyle.CssClass = "SelectedInactiveFileManagerItem";
+
+        settings.Styles.Breadcrumbs.CssClass = "BreadCrumbs";
+        settings.Styles.BreadcrumbsItem.CssClass = "BreadCrumbsItem";
+        settings.Styles.BreadcrumbsItem.HoverStyle.CssClass = "BreadCrumbsHoveredItem";
+    }).BindToFileSystemProvider(Model.FileSystemProvider).GetHtml()
+

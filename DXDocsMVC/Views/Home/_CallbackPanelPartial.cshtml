@@ -1,0 +1,16 @@
+@Html.DevExpress().CallbackPanel(settings =>
+{
+    settings.Name = "CallbackPanel";
+    settings.ControlStyle.CssClass = "CallbackPanel";
+    settings.CallbackRouteValues = new { Controller = "Home", Action = "CallbackPanelPartial" };
+    settings.SettingsLoadingPanel.Enabled = false;
+    settings.ClientSideEvents.Init = "App.onControlInit";
+    settings.ClientSideEvents.BeginCallback = "App.onControlBeginCallback";
+    settings.ClientSideEvents.EndCallback = "App.onControlEndCallback";
+
+    settings.SetContent(() => {
+        //ViewContext.Writer.Write("");
+        Html.RenderPartial("_DocumentBrowserPartial");
+    });
+}).GetHtml()
+
