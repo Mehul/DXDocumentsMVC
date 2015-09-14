@@ -1,9 +1,30 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DXDocsMVC", "DXDocsMVC\DXDocsMVC.csproj", "{E34B1F2F-41D5-43E4-8219-DE150067EF40}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Documents", "..\..\..\Users\Public\Documents\DevExpress Demos 15.1\Components\ASP.NET\CS\Documents\", "{7DA580CF-F7FE-43A6-9FF5-4D2A03EAFB03}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_3785"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\Users\Public\Documents\DevExpress Demos 15.1\Components\ASP.NET\CS\Documents\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3785\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_3785"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\Users\Public\Documents\DevExpress Demos 15.1\Components\ASP.NET\CS\Documents\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3785\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "3785"
+		SlnRelativePath = "..\..\..\Users\Public\Documents\DevExpress Demos 15.1\Components\ASP.NET\CS\Documents\"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +36,10 @@ Global
 		{E34B1F2F-41D5-43E4-8219-DE150067EF40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E34B1F2F-41D5-43E4-8219-DE150067EF40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E34B1F2F-41D5-43E4-8219-DE150067EF40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DA580CF-F7FE-43A6-9FF5-4D2A03EAFB03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DA580CF-F7FE-43A6-9FF5-4D2A03EAFB03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DA580CF-F7FE-43A6-9FF5-4D2A03EAFB03}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DA580CF-F7FE-43A6-9FF5-4D2A03EAFB03}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
