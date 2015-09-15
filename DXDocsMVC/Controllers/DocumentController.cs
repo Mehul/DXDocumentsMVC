@@ -13,5 +13,11 @@ namespace DXDocsMVC.Controllers
         {
             return View();
         }
+
+
+        public ActionResult CallbackPanelPartial()
+        {
+            return PartialView("_CallbackPanelPartial");
+        }
     }
 }

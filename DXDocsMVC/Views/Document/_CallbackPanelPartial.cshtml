@@ -1,0 +1,25 @@
+@Html.DevExpress().CallbackPanel(settings =>
+{
+    settings.Name = "CallbackPanel";
+    settings.ControlStyle.CssClass = "CallbackPanel";
+    settings.CallbackRouteValues = new { Controller = "Home", Action = "CallbackPanelPartial" };
+    settings.SettingsLoadingPanel.Enabled = false;
+    settings.ClientSideEvents.Init = "App.onControlInit";
+    settings.ClientSideEvents.BeginCallback = "App.onControlBeginCallback";
+    settings.ClientSideEvents.EndCallback = "App.onControlEndCallback";
+
+    settings.SetContent(() => {
+        //ViewContext.Writer.Write("");
+        Html.RenderPartial("_DocumentBrowserPartial");
+    });
+}).GetHtml()
+
+@*<dx:ASPxCallbackPanel runat="server" ID="DialogCallbackPanel" ClientInstanceName="DialogCallbackPanel" CssClass="DialogCallbackPanel"
+                          Height="0" OnCallback="DialogCallbackPanel_Callback">
+        <settingsloadingpanel enabled="false" />
+        <clientsideevents begincallback="App.onControlBeginCallback" endcallback="App.onControlEndCallback" />
+        <panelcollection>
+            <dx:panelcontent>
+            </dx:panelcontent>
+        </panelcollection>
+    </dx:ASPxCallbackPanel>*@

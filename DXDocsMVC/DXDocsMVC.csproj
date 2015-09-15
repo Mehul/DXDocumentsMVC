@@ -296,6 +296,11 @@
     <Content Include="Views\Home\_FileManagerPartial.cshtml" />
     <Content Include="Views\LogOn\Index.cshtml" />
     <Content Include="Views\Document\Index.cshtml" />
+    <Content Include="Views\Document\_CallbackPanelPartial.cshtml" />
+    <Content Include="Views\Document\_SpreadsheetEditorPartial.cshtml" />
+    <Content Include="Views\Document\_RichtextEditorPartial.cshtml" />
+    <Content Include="Views\Document\_RichtextToolbarPartial.cshtml" />
+    <Content Include="Views\Document\_SpreadsheetToolbarPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -314,6 +319,7 @@
     <Compile Include="Code\DocumentService.cs" />
     <Compile Include="Code\DomainModel.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Models\Document.cs" />
     <Compile Include="Models\FileManagerHelperModel.cs" />
     <Compile Include="Code\FileSystemService.cs" />
     <Compile Include="Code\ImageService.cs" />
